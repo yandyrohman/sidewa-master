@@ -40,10 +40,10 @@ Route::get('/tes', function() {
 
 Route::get('/perbaiki_tanggal', function() {
     
-    // $loop = DB::table('master_data')->get();
-    // foreach($loop as $data) {
-        DB::table('master_data')
-        ->where('nip', '196009241988101001')
+    $loop = DB::table('bpkad')->get();
+    foreach($loop as $data) {
+        DB::table('bpkad')
+        ->where('nip', $data->nip)
         ->update([
             'tgllhr' => normalkan_tanggal($data->tgllhr),
             'tmtcapeg' => normalkan_tanggal($data->tmtcapeg),
@@ -54,6 +54,6 @@ Route::get('/perbaiki_tanggal', function() {
             'tmtstop' => normalkan_tanggal($data->tmtstop),
             'tmttabel' => normalkan_tanggal($data->tmttabel),
         ]);
-    // }
+    }
 
 });
